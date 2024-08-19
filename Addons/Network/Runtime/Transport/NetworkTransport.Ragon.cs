@@ -1,4 +1,5 @@
 #if RAGON_NETWORK
+using System.Collections.Generic;
 using Ragon.Client;
 
 namespace ME.BECS.Network
@@ -73,6 +74,11 @@ namespace ME.BECS.Network
       
       return null;
     }
+    
+    public void OnData(RagonClient client, RagonPlayer player, byte[] data)
+    {
+      _bytesQueue.Enqueue(data);
+    }
 
     public void OnData(RagonPlayer player, byte[] data)
     {
@@ -131,6 +137,18 @@ namespace ME.BECS.Network
     }
 
     public void OnPlayerLeft(RagonClient client, RagonPlayer player)
+    {
+    }
+
+    public void OnRoomListUpdate(RagonClient client, IReadOnlyList<RagonRoomInformation> roomsInfos)
+    {
+    }
+
+    public void OnUserDataUpdated(RagonClient client, IReadOnlyList<string> changes)
+    {
+    }
+
+    public void OnPlayerUserDataUpdated(RagonClient client, RagonPlayer player, IReadOnlyList<string> changes)
     {
     }
   }
